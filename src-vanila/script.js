@@ -17,20 +17,12 @@ class Game {
     setTimeout(() => el.classList.remove("highlight"), 100);
 
     // game logic
-    console.log(
-      "idx: ",
-      this.state.idx,
-      "consequence: ",
-      this.state.consequence,
-      "id: ",
-      id
-    );
     if (this.state.consequence[this.state.idx] === id) {
       this.state.idx++;
       if (this.state.idx === this.state.consequence.length) {
         this.getNextBlock();
-        this.updateUI();
       }
+      this.updateUI();
     } else {
       this.newGame();
     }
@@ -41,6 +33,7 @@ class Game {
     const blocksElements = this.blocksColours.map((c, i) =>
       makeNode({
         tag: "div",
+        children: i + 1,
         attributes: {
           class: "block opaque",
           style: `background: ${c};`,
@@ -76,7 +69,12 @@ class Game {
   // Update UI
   updateUI() {
     this.ui.level.innerText = `Level: ${this.state.consequence.length}`;
-    this.ui.hint.innerText = JSON.stringify(this.state.consequence);
+    this.ui.hint.innerHTML = this.state.consequence
+      .map((c, i) => {
+        const val = 1 + +c;
+        return i === this.state.idx ? `[${val}]` : `&nbsp;${val}&nbsp;`;
+      })
+      .join(" ");
   }
 
   // New Game
@@ -103,11 +101,13 @@ class Game {
     this.root.appendChild(startBtn);
   }
   initUI() {
-    const level = makeNode({ tag: "p" });
-    const hint = makeNode({ tag: "p" });
+    const level = makeNode({ tag: "h2" });
+    level.innerText = "Simon Says";
+    const hint = makeNode({ tag: "p", attributes: { class: "monospace" } });
+    hint.innerText = "Start the game";
+    const ui = makeNode({ tag: "div", children: [level, hint] });
     this.ui = { level, hint };
-    this.root.appendChild(level);
-    this.root.appendChild(hint);
+    this.root.appendChild(ui);
   }
   // Init
   init() {

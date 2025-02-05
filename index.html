@@ -8,6 +8,19 @@
   <body>
     <a href="src/index.html">React version</a>
     <style>
+      body {
+        background: lightgrey;
+      }
+      #root {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: fit-content;
+        padding: 32px;
+        background: white;
+        margin: auto;
+        border-radius: 16px;
+      }
       .hide {
         display: none;
       }
@@ -15,7 +28,13 @@
         width: 100px;
         aspect-ratio: 1;
         box-sizing: border-box;
-        border-radius: 16px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
       }
       .highlight {
         border: 8px solid white;
@@ -26,6 +45,10 @@
         gap: 16px;
         grid-template-columns: repeat(2, 1fr);
         width: fit-content;
+      }
+      .monospace {
+        font-family: "Courier New", Courier, monospace;
+        white-space: wrap;
       }
     </style>
     <div id="root"></div>

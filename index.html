@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simon Says - Vanila JS</title>
+  </head>
+  <body>
+    <a href="src/index.html">React version</a>
+    <style>
+      .hide {
+        display: none;
+      }
+      .block {
+        width: 100px;
+        aspect-ratio: 1;
+        box-sizing: border-box;
+        border-radius: 16px;
+      }
+      .highlight {
+        border: 8px solid white;
+        opacity: 0.4;
+      }
+      .blocks {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(2, 1fr);
+        width: fit-content;
+      }
+    </style>
+    <div id="root"></div>
+    <script type="module" src="/src-vanila/script.js"></script>
+  </body>
+</html>
